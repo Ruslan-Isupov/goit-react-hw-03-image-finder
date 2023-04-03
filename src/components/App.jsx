@@ -20,17 +20,12 @@ export class App extends Component {
     if (prevName !== nextName) {
       this.incrementPage(nextName);
     }
-    // else if (prevName === nextName && prevState.images.length<=0)
-    //   {
-    //  return alert("Same  name of query.Try again!")
-      
-    // }
-    // else {return}
   }
+
   incrementPage = nameQuery => {
     this.setState({ loader: true });
-    const { numberPage} = this.state;
-return getFetchSearch(nameQuery, numberPage)
+    const { numberPage } = this.state;
+    return getFetchSearch(nameQuery, numberPage)
       .then(listOfImages =>
         this.setState(prevState => {
           return {
@@ -42,14 +37,14 @@ return getFetchSearch(nameQuery, numberPage)
       .catch(error => this.setState({ error }))
       .finally(() => this.setState({ loader: false }));
   };
-  saveNameQuery = (nameQuery) => {
-    
-    return this.setState((prevState) => {
-      if (prevState.nameQuery === nameQuery) { return Notiflix.Notify.failure('Same  name of query.Try again!'); }
-    else { return { nameQuery: nameQuery, images: [], numberPage: 1 } }
+  saveNameQuery = nameQuery => {
+    return this.setState(prevState => {
+      if (prevState.nameQuery === nameQuery) {
+        return Notiflix.Notify.failure('Same  name of query.Try again!');
+      } else {
+        return { nameQuery: nameQuery, images: [], numberPage: 1 };
       }
-    );
-
+    });
   };
 
   render() {
