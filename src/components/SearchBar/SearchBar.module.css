@@ -1,0 +1,28 @@
+.formBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.searchBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  background-color: rgb(106, 106, 250);
+  padding: 5px 30px;
+}
+.input {
+  width: 200px;
+  padding: 10px 20px;
+  outline: none;
+  border: none;
+}
+.buttonBar {
+  padding: 9px 20px;
+  outline: none;
+  border: none;
+  background-color: white;
+}

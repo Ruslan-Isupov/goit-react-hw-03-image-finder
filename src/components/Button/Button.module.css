@@ -1,0 +1,11 @@
+.buttonPagination {
+  margin: 20px auto;
+  display: block;
+  padding: 10px 25px;
+  background-color: rgb(106, 106, 250);
+  color: white;
+  text-align: center;
+  border: none;
+  outline: none;
+  border-radius: 5%;
+}
