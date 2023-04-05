@@ -1,3 +1,4 @@
+import Notiflix from 'notiflix';
 const KEY = '34886676-216aa5272081537bbb6585f7b';
 
 export function getFetchSearch(nameQuery, numberPage) {
@@ -12,5 +13,10 @@ export function getFetchSearch(nameQuery, numberPage) {
         new Error(`Images with this name ${nameQuery} don't exist.Try again!`)
       );
     })
-    .then(images => images);
+    .then(images => {
+      if (images.totalHits === 0) {
+        Notiflix.Notify.failure('We do not have coresponding images!');
+      }
+      return images;
+    });
 }

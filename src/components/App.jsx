@@ -39,10 +39,12 @@ export class App extends Component {
       .finally(() => this.setState({ loader: false }));
   };
   saveNameQuery = nameQuery => {
+   
     return this.setState(prevState => {
-      if (prevState.nameQuery === nameQuery) {
+      if (prevState.nameQuery === nameQuery ) {
         return Notiflix.Notify.failure('Same  name of query.Try again!');
-      } else {
+      }
+   else {
         return { nameQuery: nameQuery, images: [], numberPage: 1 };
       }
     });
