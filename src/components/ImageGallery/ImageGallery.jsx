@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { Component } from 'react';
+import { Blocks } from 'react-loader-spinner';
 import { ImageGalleryItem } from 'components/ImageGalleryItem/ImageGalleryItem';
 import { Modal } from 'components/Modal/Modal';
 import { Button } from 'components/Button/Button';
@@ -26,8 +27,9 @@ export class ImageGallery extends Component {
   };
 
   render() {
-    const { nameQuery, images, incrementPage } = this.props;
-    const {  error, showModal } = this.state;
+    const { nameQuery, images, incrementPage, loader, totalHits } = this.props;
+    const { error, showModal } = this.state;
+    const showButton = images.length > 1 && totalHits > images.length;
     return (
       <>
         {error && <h1>{error.message}</h1>}
@@ -45,8 +47,16 @@ export class ImageGallery extends Component {
             );
           })}
         </ul>
-
-        {images.length > 0 && images.length <= 500 && (
+        {loader && (
+          <Blocks
+            visible={true}
+            height="80"
+            width="80"
+            ariaLabel="blocks-loading"
+            wrapperClass={css.blocksWrapper}
+          />
+        )}
+        {showButton && (
           <Button incrementPage={incrementPage} nameQuery={nameQuery} />
         )}
         {showModal && (
@@ -57,7 +67,9 @@ export class ImageGallery extends Component {
   }
 }
 ImageGallery.propTypes = {
+  loader: PropTypes.bool.isRequired,
   nameQuery: PropTypes.string.isRequired,
   incrementPage: PropTypes.func.isRequired,
   images: PropTypes.arrayOf(PropTypes.object).isRequired,
+  totalHits: PropTypes.number.isRequired,
 };

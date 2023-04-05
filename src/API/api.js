@@ -12,5 +12,5 @@ export function getFetchSearch(nameQuery, numberPage) {
         new Error(`Images with this name ${nameQuery} don't exist.Try again!`)
       );
     })
-    .then(images => images.hits);
+    .then(images => images);
 }
